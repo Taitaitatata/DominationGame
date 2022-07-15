@@ -1,0 +1,22 @@
+name: DominationGame
+version: '${project.version}'
+main: com.github.taitaitatata.dominationgame.DominationGamePlugin
+api-version: 1.13
+authors: [ Taitaitatata ]
+description: The domination game
+database: true
+loadbefore: ["WorldEdit"]
+depend: ["WorldEdit"]
+
+commands:
+  domination:
+    aliases: ["dg", "dm", "dmg", "domination-game"]
+    description: "ゲームの管理や開始、強制停止などが可能なプラグインの中核コマンドです。"
+    permission: "dominationgame.admin"
+    permission-message: "§c権限が不足しているため実行できません。"
+    usage: "/<command> <help|arena|game> [<args>]"
+
+permissions:
+  dominationgame.admin:
+    description: "ゲームを管理する権限"
+    default: op

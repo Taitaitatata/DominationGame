@@ -1,0 +1,28 @@
+database:
+  # Database file path
+  file-name: "database.db"
+
+  # Table prefix
+  table-prefix: "domination_"
+
+# デフォルト設定
+# - アリーナを登録する際のデフォルト設定
+defaults:
+  arena:
+    players:
+      min: 2
+      max: 16
+
+    respawnAt: 5
+
+team:
+  public:
+    health: 100.0
+
+  one:
+    name: "US"
+    color: RED
+
+  two:
+    name: "RU"
+    color: BLUE
