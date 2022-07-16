@@ -11,6 +11,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -32,7 +34,8 @@ public final class ArenaCommand {
                 break;
             case "edit":
             case "list":
-
+                list(sender, command, label, args);
+                break;
             default:
                 break;
         }
@@ -113,14 +116,24 @@ public final class ArenaCommand {
         Gson gson = new Gson();
 
         for (File f : files) {
+            Bukkit.broadcastMessage(f.getName());
             if (!f.getName().endsWith(".json")) continue;
 
             try {
-                arena.add(gson.fromJson(Files.newBufferedReader(f.toPath()), Arena.class));
-            } catch (IOException | JsonSyntaxException ignored) {}
+                arena.add(gson.fromJson(Files.newBufferedReader(f.toPath(), StandardCharsets.UTF_8), Arena.class));
+            } catch (IOException | JsonSyntaxException i) {
+                i.printStackTrace();
+            }
         }
 
-
+        sender.sendMessage(String.format("§7[§cDomination§7] §r現在%s個のアリーナが作成済み", arena.size()));
+        for (Arena ar : arena) {
+            sender.sendMessage(" " + ar.getId() + (ar.hasDisplayName() ? " §7(" + ar.getDisplayName() + "§7)": ""));
+            sender.sendMessage(
+                    " §7- W:" + ar.getWorldId() +  " F:" + ar.getFlags().size() + " K:" + ar.getKits().size()
+                    + " Mn:" + ar.getLimits().getMin() + " Mx:" + ar.getLimits().getMax() + " R:" + ar.getRespawnAt()
+            );
+        }
     }
 
 }
