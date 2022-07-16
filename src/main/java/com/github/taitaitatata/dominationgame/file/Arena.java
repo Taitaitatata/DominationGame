@@ -67,6 +67,10 @@ public final class Arena {
         return displayName;
     }
 
+    public int getRespawnAt() {
+        return respawnAt;
+    }
+
     public void addKit(Kit kit) {
         this.kit.add(kit);
     }
@@ -115,11 +119,19 @@ public final class Arena {
         this.kit = kits;
     }
 
+    public void setRespawnAt(int respawnAt) {
+        this.respawnAt = respawnAt;
+    }
+
     public World getWorld() {
         return Bukkit.getWorld(this.worldId);
     }
 
     public String getWorldId() {
         return this.worldId;
+    }
+
+    public boolean hasDisplayName() {
+        return id.equals(displayName);
     }
 }
