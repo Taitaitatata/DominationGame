@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -23,7 +24,7 @@ public class JsonLoadTest {
             File file = new File(cl.getResource("arena1.json").getFile());
 
             Arena a = gson.fromJson(
-                    Files.newBufferedReader(file.toPath()),
+                    Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8),
                     Arena.class
             );
 
