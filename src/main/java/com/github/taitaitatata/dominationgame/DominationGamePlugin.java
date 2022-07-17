@@ -60,12 +60,12 @@ public final class DominationGamePlugin extends JavaPlugin {
     public void onDisable() {
     }
 
-    public void init() {
+    private void init() {
         getLogger().info("Creating data directories. (1/3)");
         if (!getDataFolder().exists()) getDataFolder().mkdir();
         if (!ARENA_DIR.exists()) ARENA_DIR.mkdir();
 
-        getLogger().info("If not exists config file then saving default config... (2/3");
+        getLogger().info("If not exists config file then saving default config... (2/3)");
         saveDefaultConfig();
 
         config = new Config(this);
